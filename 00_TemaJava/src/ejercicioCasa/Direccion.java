@@ -1,12 +1,12 @@
 package ejercicioCasa;
 
 public class Direccion {
+	
 	private String tipoVia;
 	private String nombreVia;
 	private String cp;
 
 	public Direccion(String tipoVia, String nombreVia, String cp) {
-		super();
 		this.tipoVia = tipoVia;
 		this.nombreVia = nombreVia;
 		this.cp = cp;
@@ -38,6 +38,7 @@ public class Direccion {
 
 	@Override
 	public String toString() {
-		return "la direccion " + tipoVia + " " + nombreVia + " con codigo postal " + cp;
+		return "Direccion [tipoVia=" + tipoVia + ", nombreVia=" + nombreVia + ", cp=" + cp + "]";
 	}
+
 }

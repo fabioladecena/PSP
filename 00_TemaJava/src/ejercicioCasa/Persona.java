@@ -1,27 +1,15 @@
 package ejercicioCasa;
 
 public class Persona {
+
 	private String nombre;
-	private int edad;
 	private String tlf;
 	private Direccion direccion;
-	private String dni;
 
-	public Persona(String nombre, int edad, String tlf, Direccion direccion, String dni) {
-		super();
+	public Persona(String nombre, String tlf, Direccion direccion) {
 		this.nombre = nombre;
-		this.edad = edad;
 		this.tlf = tlf;
 		this.direccion = direccion;
-		this.dni = dni;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -30,14 +18,6 @@ public class Persona {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
 	}
 
 	public String getTlf() {
@@ -58,7 +38,6 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return nombre + ", tiene " + edad + " años, su tlf es el " + tlf + ", vive en " + direccion + ", con dni "
-				+ dni;
+		return "Persona [nombre=" + nombre + ", tlf=" + tlf + ", direccion=" + direccion + "]";
 	}
 }
