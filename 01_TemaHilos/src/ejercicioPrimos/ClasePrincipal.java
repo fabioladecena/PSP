@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class ClasePrincipal {
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Primer numero");
+		System.out.println("Introduzca un numero:");
 		int num1 = sc.nextInt();
-		System.out.println("Segundo numero");
+		System.out.println("Introduzca un segundo numero:");
 		int num2 = sc.nextInt();
-		System.out.println("Tercer numero");
+		System.out.println("Introduzca un tercer numero:");
 		int num3 = sc.nextInt();
 		
 		Hilo hilo1 = new Hilo(num1);

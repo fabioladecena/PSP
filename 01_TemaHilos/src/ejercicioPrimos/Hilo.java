@@ -2,37 +2,36 @@ package ejercicioPrimos;
 
 import java.util.Date;
 
-public class Hilo implements Runnable{
+public class Hilo implements Runnable {
 	private int numero;
 
 	public Hilo(int numero) {
-		super();
 		this.numero = numero;
 	}
 
 	@Override
 	public void run() {
+
 		Date date = new Date();
-		double tiempoInicial = date.getTime();
-		System.out.println("Soy el hilo: " + Thread.currentThread().getName() + " llevo el numero: " + numero);
-		boolean prime = true;
+		double tInicial = date.getTime();
+
+		int count = 0;
+
 		for (int i = 2; i < numero; i++) {
 			if (numero % i == 0) {
-				prime = false;
-				break;
+				count++;
 			}
+		}
+
+		if (count == 2) {
+			System.out.println("El numero " + numero + " es Primo");
+		} else {
+			System.out.println("El numero " + numero + " no es Primo");
 		}
 		
 		Date date2 = new Date();
-		double tiempoFinal = date2.getTime();
-		double tiempoTotal = tiempoFinal - tiempoInicial;
-
-		if (prime) {
-			System.out.println("Soy el hilo: " + Thread.currentThread().getName() + " y mi numero: " + numero
-					+ " es Primooooooo" + " y mi tiempo es: " + tiempoTotal + " milisegundos");
-		} else {
-			System.out.println("Soy el hilo: " + Thread.currentThread().getName() + " y mi numero: " + numero
-					+ " NO es Primoooooo" + " y mi tiempo es: " + tiempoTotal + " milisegundos");
-		}
+		double tFinal = date2.getTime();
+		
+		System.out.println("El hilo tardó "+ Thread.currentThread().getName() + (tFinal-tInicial) + " milisegundos");
 	}
 }
