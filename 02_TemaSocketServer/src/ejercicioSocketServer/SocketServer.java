@@ -11,12 +11,11 @@ import java.net.Socket;
 public class SocketServer {
 	public static final int PUERTO = 2017;
 	public static final String IP_SERVER = "localhost";
-	public final static int SUMAR = 1;
-	public final static int RESTAR = 2;
-	public final static int MULTIPLICAR = 3;
-	public final static int DIVIDIR = 4;
-	static int num1;
-	static int num2;
+
+	public final static int SUMA = 1;
+	public final static int RESTA = 2;
+	public final static int MULTIPLICACION = 3;
+	public final static int DIVISION = 4;
 
 	public static void main(String[] args) throws InterruptedException {
 		System.out.println("      APLICACIÓN DE SERVIDOR      ");
@@ -30,6 +29,7 @@ public class SocketServer {
 		try {
 			servidorSocket = new ServerSocket();
 			InetSocketAddress direccion = new InetSocketAddress(IP_SERVER, PUERTO);
+
 			servidorSocket.bind(direccion);
 
 			while (true) {
@@ -42,14 +42,36 @@ public class SocketServer {
 				String stringRecibido = bf.readLine();
 				System.out.println("SERVIDOR: Me ha llegado del cliente: " + stringRecibido);
 				String[] operadores = stringRecibido.split("-");
-				num1 = Integer.parseInt(operadores[0]);
-				num2 = Integer.parseInt(operadores[1]);
-				int numMenu = Integer.parseInt(operadores[2]);
-				double resultado = hacerOperacion(numMenu);
+
+				int iNumero1 = Integer.parseInt(operadores[0]);
+				int iNumero2 = Integer.parseInt(operadores[1]);
+				int operacion = Integer.parseInt(operadores[2]);
+				int resultado = 0;
+				
+				switch (operacion) {
+				case SUMA:
+					resultado = iNumero1 + iNumero2;
+					break;
+				case RESTA:
+					resultado = iNumero1 - iNumero2;
+					break;
+
+				case MULTIPLICACION:
+					resultado = iNumero1 * iNumero2;
+					break;
+
+				case DIVISION:
+					resultado = iNumero1 / iNumero2;
+					break;
+				default:
+					resultado = 0;
+					break;
+				}
+				
 				salida = new PrintStream(socketConexion.getOutputStream());
 				salida.println(resultado);
-
 			}
+			
 		} catch (IOException excepcion) {
 			System.out.println(excepcion);
 		} finally {
@@ -65,32 +87,5 @@ public class SocketServer {
 			}
 		}
 
-	}
-
-	private static double hacerOperacion(int numMenu) {
-		double resultado = 0;
-		switch (numMenu) {
-		case SUMAR:
-			resultado = num1 + num2;
-			break;
-		case RESTAR:
-			if (num2 > num1) {
-				resultado = num2 - num1;
-			} else {
-				resultado = num1 - num2;
-			}
-			break;
-		case MULTIPLICAR:
-			resultado = num1 * num2;
-			break;
-		case DIVIDIR:
-			if (num2 > num1) {
-				resultado = num2 / num1;
-			} else {
-				resultado = num1 / num2;
-			}
-			break;
-		}
-		return resultado;
 	}
 }

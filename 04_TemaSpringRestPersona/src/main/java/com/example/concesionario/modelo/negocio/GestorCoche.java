@@ -1,6 +1,5 @@
 package com.example.concesionario.modelo.negocio;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,14 +28,14 @@ public class GestorCoche {
 		return null;
 	}
 
-	public Coche altaCoche(Coche coche) throws SQLIntegrityConstraintViolationException {
+	public Coche altaCoche(Coche coche) {
 		Coche c = null;
-		try {
+		if (Integer.parseInt(coche.getPotencia()) < 0) {
+			return null;
+		} else {
 			c = daoCoche.save(coche);
-		} catch (Exception e) {
-			System.out.println("Ya está esa matricula");
+			return c;
 		}
-		return c;
 	}
 
 	public Coche modificarCoche(Coche coche) {

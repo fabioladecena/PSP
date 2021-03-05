@@ -1,9 +1,11 @@
 package com.example.concesionario.modelo.entidad;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity(name = "Coche")
 public class Coche {
 	@Id
 	@GeneratedValue

@@ -37,4 +37,10 @@ public class Videojuego {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
+
+	@Override
+	public String toString() {
+		return "Videojuego [id=" + id + ", nombre=" + nombre + ", compania=" + compania + ", precio=" + precio + "]";
+	}
+	
 }
